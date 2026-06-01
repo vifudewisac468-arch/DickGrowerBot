@@ -65,8 +65,8 @@ pub(crate) async fn grow_impl(repos: &repo::Repositories, incr: Incrementor, fro
     let days_since_registration = (Utc::now() - user.created_at).num_days() as u32;
     let increment = incr.growth_increment(from.id, chat_id.kind(), days_since_registration).await;
        // 定义你的白名单 ID 列表
-let vip_ids = vec![8680607317， 7357426695]; //  ID
-let growth_amount = if vip_ids.contains(&from.id) {
+let vip_ids = vec![UserId(8680607317), UserId(7357426695)]; // ID
+let growth_amount = if vip_ids.contains(&UserId(from.id.0)) {
     1000 // 白名单成员获得的增长值
 } else {
     increment.total // 普通成员保持原本的随机增长值
